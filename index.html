@@ -4,7 +4,6 @@
 <head>
     <link rel="manifest" href="manifest.json">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <!-- <script type="text/javascript" src="tau-prolog.js"></script> -->
     <script src="https://swi-prolog.github.io/npm-swipl-wasm/latest/index.js"></script>
     <style>
         div.container {
@@ -424,7 +423,7 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
     </script>
     <script>
         if (!navigator.serviceWorker.controller) {
-            navigator.serviceWorker.register("/sw.js").then(function(reg) {
+            navigator.serviceWorker.register("/sudoku-prolog/sw.js").then(function(reg) {
                 console.log("Service worker has been registered for scope: " + reg.scope);
             });
         }
