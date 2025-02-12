@@ -1,16 +1,14 @@
 {
     "name": "Pludoku",
     "short_name": "Pludoku",
-    "theme_color": "#ffcbe4",
-    "background_color": "#fa99ca",
     "display": "standalone",
     "scope": "/",
-    "start_url": "http://0.0.0.0:8000/sudoku.html",
+    "start_url": "https://lyzardking.github.io/sudoku-prolog/sudoku.html",
     "description": "The BEST Sudoku website.",
     "orientation": "any",
     "icons": [
         {
-            "src": "http://0.0.0.0:8000/static/Pludoku.png",
+            "src": "https://lyzardking.github.io/sudoku-prolog/static/Pludoku.png",
             "sizes": "1024x1024"
         }
     ]
