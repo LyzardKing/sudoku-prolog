@@ -5,12 +5,14 @@
     <link rel="manifest" href="manifest.json">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <script src="https://swi-prolog.github.io/npm-swipl-wasm/latest/index.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet">
     <style>
         div.container {
             /* flex: auto; */
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            /* flex-wrap: wrap; */
+            flex-direction: column;
         }
 
         div.sudoku {
@@ -21,8 +23,8 @@
             /* height: 220px; */
             font-size: 0;
             max-width: 100vw;
-            /* margin-left: auto;
-            margin-right: auto; */
+            margin-left: auto;
+            margin-right: auto;
             /* margin-top: 10%; */
         }
 
@@ -54,7 +56,7 @@
 
         div.win {
             display: block;
-            font-size: 15vw;
+            font-size: xxx-large;
             padding: 20px;
             background-color: #f44336;
             color: white;
@@ -96,11 +98,11 @@
             font-size: 3vh;
         }
 
-        div.textarea {
+        /* div.textarea {
             flex-grow: 1;
             min-width: 70vw;
             height: 80vh;
-        }
+        } */
 
         textarea.prolog_src {
             width: 90%;
@@ -109,7 +111,8 @@
 
         div.buttons {
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
+            justify-content: center;
         }
 
         /* *{ box-sizing: border-box } */
@@ -118,6 +121,11 @@
 
 <body>
     <div class="container">
+        <div class="buttons">
+            <button class="cheat" id="cheat">Cheat!</button>
+            <button class="refresh" id="refresh">Refresh</button>
+            <button class="show_pl" id="show_pl">Show Prolog</button>
+        </div>
         <div class="sudoku" id="sudoku" data-render="Sudoku matrix">
             <div class="sudoku-row">
                 <input type="number" min="1" max="9" class="sudoku-cell"></input>
@@ -220,8 +228,8 @@
             </div>
         </div>
         <div class="textarea" id="textarea" style="display: none;">
-            <p>You can modify the logic below, then click on the <i>Refresh</i> button to load a game with the new rules.</p>
-            <textarea class="prolog_src" id="sudoku_src" type="text/prolog">
+            <h1>You can modify the logic below, then click on the <i>Refresh</i> button to load a game with the new rules.</h1>
+            <textarea class="prolog_src prism-live language-prolog" id="sudoku_src" type="text/prolog" spellcheck="false">
 :- use_module(library(clpfd)).
 
 sudoku(Rows, Rows) :-
@@ -242,11 +250,6 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
     all_distinct([N1, N2, N3, N4, N5, N6, N7, N8, N9]), 
     blocks(Ns1, Ns2, Ns3).
             </textarea>
-        </div>
-        <div class="buttons">
-            <button class="cheat" id="cheat">Cheat!</button>
-            <button class="refresh" id="refresh">Refresh</button>
-            <button class="show_pl" id="show_pl">Show Prolog</button>
         </div>
         <div class="win" id="winbanner" style="display: none;">
             <div id="winbanner_msg">You Win!</div>
@@ -466,6 +469,9 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
             });
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://live.prismjs.com/src/prism-live.js?load=markup,css,javascript"></script>
 </body>
 
 </html>
