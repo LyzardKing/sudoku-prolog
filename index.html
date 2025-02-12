@@ -37,7 +37,7 @@
         input.sudoku-cell {
             width: 11.11%;
             /* height: 100%; */
-            font-size: 4vh;
+            font-size: min(4vw, 4vh);
             aspect-ratio: 1;
             font-weight: bold;
             display: inline-block;
@@ -238,6 +238,8 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
             [].slice.call(document.getElementsByClassName("sudoku-cell")).forEach((element, index) => {
                 if (puzzle[index] != "_") {
                     element.value = puzzle[index];
+                    element.readOnly = true
+                    element.style["font-weight"] = "bold";
                 }
             });
         }
@@ -352,6 +354,8 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
         window.onload = function () {
             [].slice.call(document.getElementsByClassName("sudoku-cell")).forEach(element => {
                 element.value = "";
+                element.readOnly = false;
+                element.style["font-weight"] = "normal";
             })
             var puzzle = puzzles[Math.floor(Math.random() * puzzles.length)].replaceAll(0, '_').split('');
 
