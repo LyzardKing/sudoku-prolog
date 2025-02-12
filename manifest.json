@@ -10,7 +10,7 @@
     "orientation": "any",
     "icons": [
         {
-            "src": "/static/Pludoku.png",
+            "src": "/sudoku-prolog/static/Pludoku.png",
             "sizes": "1024x1024"
         }
     ]
