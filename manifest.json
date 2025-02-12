@@ -1,0 +1,17 @@
+{
+    "name": "Pludoku",
+    "short_name": "Pludoku",
+    "display": "standalone",
+    "scope": "/",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "start_url": "/sudoku.html",
+    "description": "The BEST Sudoku website.",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "/static/Pludoku.png",
+            "sizes": "1024x1024"
+        }
+    ]
+}
