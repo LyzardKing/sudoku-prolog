@@ -2,11 +2,18 @@ self.addEventListener("install", function(event) {
   event.waitUntil(preLoad());
 });
 
+// The static resources that the app needs to function.
+const APP_STATIC_RESOURCES = [
+    "/",
+    "/index.html",
+    "/static/Pludoku.png"
+  ];
+
 var preLoad = function(){
   console.log("Installing web app");
   return caches.open("offline").then(function(cache) {
     console.log("caching index and important routes");
-    return cache.addAll(["/statuc/", "/offline.html"]);
+    return cache.addAll(APP_STATIC_RESOURCES);
   });
 };
 
