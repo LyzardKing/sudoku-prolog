@@ -105,8 +105,8 @@
         } */
 
         textarea.prolog_src {
-            width: 90%;
-            height: 90%;
+            width: 98vw;
+            height: 80vh;
         }
 
         div.buttons {
@@ -229,6 +229,7 @@
         </div>
         <div class="textarea" id="textarea" style="display: none;">
             <h1>You can modify the logic below, then click on the <i>Refresh</i> button to load a game with the new rules.</h1>
+            <button id="reset_src">Reset Prolog Code</button>
             <textarea class="prolog_src prism-live language-prolog" id="sudoku_src" type="text/prolog" spellcheck="false">
 :- use_module(library(clpfd)).
 
@@ -376,6 +377,12 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
 
         // var puzzle = puzzles.random();
         window.onload = function () {
+            if (localStorage.getItem("init") == null) {
+                localStorage.setItem("init", document.getElementById("sudoku_src").value);
+            }
+            if (localStorage.getItem("prolog_src") != null) {
+                document.getElementById("sudoku_src").value = localStorage.getItem("prolog_src");
+            }
             [].slice.call(document.getElementsByClassName("sudoku-cell")).forEach(element => {
                 element.value = "";
                 element.readOnly = false;
@@ -406,8 +413,14 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
 
         [].slice.call(document.getElementsByClassName("refresh")).forEach(element => {
             element.addEventListener("click", () => {
+                var program = document.getElementById("sudoku_src").value;
+                localStorage.setItem("prolog_src", program);
                 window.location.reload();
             })
+        });
+
+        document.getElementById("reset_src").addEventListener("click", () => {
+            document.getElementById("sudoku_src").value = localStorage.getItem("init");
         });
 
         SWIPL({ arguments: ["-q"] }).then((swipl) => {
