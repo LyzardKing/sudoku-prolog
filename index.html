@@ -10,6 +10,36 @@
     <script src="https://swi-prolog.github.io/npm-swipl-wasm/latest/index.js"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet"> -->
     <style>
+        @media (prefers-color-scheme: dark) {
+            /* Dark theme styles go here */
+            html {
+                /* filter: invert(1)  brightness(.8) contrast(1.2); */
+                /* background-color: black; */
+                background-color: #121212;
+                color: lightgray;
+            }
+            button,
+            input.sudoku-cell {
+                background-color: #121212;
+                /* color: light; */
+                color: lightgray;
+            }
+            div.sudoku,
+            div.sudoku-row.fat,
+            input.sudoku-cell.fat {
+                border-color: lightgray !important;
+            }
+
+            textarea {
+                background-color: #121212;
+                color: lightgray;
+            }
+        }
+
+        p.text {
+            font-size: x-large;
+        }
+
         div.container {
             /* flex: auto; */
             display: flex;
@@ -240,8 +270,8 @@
             </div>
         </div>
         <div class="textarea" id="textarea" style="display: none;">
-            <h1>You can modify the logic below, then click on the <i>Refresh</i> button to load a game with the new
-                rules.</h1>
+            <p class="text">You can modify the logic below, then click on the <i>Refresh</i> button to load a game with the new
+                rules.</p>
             <button id="reset_src">Reset Prolog Code</button>
             <textarea class="prolog_src prism-live language-prolog" id="sudoku_src" type="text/prolog"
                 spellcheck="false">
