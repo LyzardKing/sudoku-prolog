@@ -3,8 +3,6 @@
     "short_name": "Pludoku",
     "display": "standalone",
     "scope": "/sudoku-prolog/",
-    "background_color": "#ffffff",
-    "theme_color": "#ffffff",
     "start_url": "/sudoku-prolog/",
     "description": "The BEST Sudoku website.",
     "orientation": "any",
