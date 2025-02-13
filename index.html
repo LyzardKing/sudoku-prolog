@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <title>Prolog Sudoku</title>
+    <meta name="description" content="Simple Sudoku game in Prolog">
     <link rel="manifest" href="manifest.json">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://swi-prolog.github.io/npm-swipl-wasm/latest/index.js"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet"> -->
     <style>
@@ -28,23 +31,18 @@
             /* margin-top: 10%; */
         }
 
-        /* div.sudoku-row {
-            height: 11.11%;
-        } */
-
         div.sudoku-row.fat {
             border-bottom: 2px solid black;
+            box-sizing: border-box;
         }
 
         input.sudoku-cell {
             width: 11.11%;
-            /* height: 100%; */
             font-size: min(4vw, 4vh);
             aspect-ratio: 1;
-            font-weight: bold;
             display: inline-block;
             box-sizing: border-box;
-            border: 1px solid #888;
+            border: 1px solid lightgray;
             margin: 0px;
             text-align: center;
             vertical-align: middle;
@@ -52,6 +50,7 @@
 
         input.sudoku-cell.fat {
             border-right: 2px solid black;
+            box-sizing: border-box;
         }
 
         div.win {
@@ -95,7 +94,13 @@
             /* height: 100%; */
             /* min-height: 2vh; */
             width: 20vh;
-            font-size: xx-large;
+            font-size: large;
+        }
+
+        @media screen and (max-width: 768px) {
+            button {
+                font-size: xx-large;
+            }
         }
 
         /* div.textarea {
@@ -113,6 +118,11 @@
             display: flex;
             /* flex-direction: column; */
             justify-content: center;
+        }
+
+        input.sudoku-cell.fixed {
+            /* background-color: gainsboro; */
+            font-weight: bold;
         }
 
         /* *{ box-sizing: border-box } */
@@ -215,7 +225,7 @@
                 <input type="number" min="1" max="9" class="sudoku-cell"></input>
                 <input type="number" min="1" max="9" class="sudoku-cell"></input>
             </div>
-            <div class="sudoku-row">
+            <div class="sudoku-row fat">
                 <input type="number" min="1" max="9" class="sudoku-cell"></input>
                 <input type="number" min="1" max="9" class="sudoku-cell"></input>
                 <input type="number" min="1" max="9" class="sudoku-cell fat"></input>
@@ -228,9 +238,11 @@
             </div>
         </div>
         <div class="textarea" id="textarea" style="display: none;">
-            <h1>You can modify the logic below, then click on the <i>Refresh</i> button to load a game with the new rules.</h1>
+            <h1>You can modify the logic below, then click on the <i>Refresh</i> button to load a game with the new
+                rules.</h1>
             <button id="reset_src">Reset Prolog Code</button>
-            <textarea class="prolog_src prism-live language-prolog" id="sudoku_src" type="text/prolog" spellcheck="false">
+            <textarea class="prolog_src prism-live language-prolog" id="sudoku_src" type="text/prolog"
+                spellcheck="false">
 :- use_module(library(clpfd)).
 
 sudoku(Rows, Rows) :-
@@ -264,7 +276,7 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
                 if (puzzle[index] != "_") {
                     element.value = puzzle[index];
                     element.readOnly = true
-                    element.style["font-weight"] = "bold";
+                    element.classList.add("fixed");
                 }
             });
         }
@@ -386,7 +398,7 @@ blocks([N1, N2, N3|Ns1], [N4, N5, N6|Ns2], [N7, N8, N9|Ns3]) :-
             [].slice.call(document.getElementsByClassName("sudoku-cell")).forEach(element => {
                 element.value = "";
                 element.readOnly = false;
-                element.style["font-weight"] = "normal";
+                element.classList.remove("fixed");
             })
             var puzzle = puzzles[Math.floor(Math.random() * puzzles.length)].replaceAll(0, '_').split('');
 
